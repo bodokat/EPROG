@@ -7,5 +7,9 @@ int main() {
   f.reduce();
   f.print();
 
+  std::cout << (double)f << '\n';
+  Fraction g = 3.45;
+  g.print();
+
   return 0;
 }

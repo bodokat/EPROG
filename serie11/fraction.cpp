@@ -25,8 +25,18 @@ Fraction& Fraction::operator=(const Fraction& orig) {
 }
 Fraction::~Fraction() {}
 
-int Fraction::getNumerator() { return numerator; };
-int Fraction::getDenominator() { return denominator; };
+Fraction::Fraction(double x) {
+  int tolerance = 1000000000;
+  numerator = (int)(x*tolerance);
+  denominator = tolerance;
+  reduce();
+}
+Fraction::operator double() const {
+  return (double) numerator / (double) denominator;
+}
+
+int Fraction::getNumerator() const { return numerator; };
+int Fraction::getDenominator() const { return denominator; };
 void Fraction::setNumerator(int n) { numerator = n; };
 void Fraction::setDenominator(int n) {
   assert(n != 0);
@@ -38,7 +48,7 @@ void Fraction::setDenominator(int n) {
     numerator = -numerator;
   }
 }
-void Fraction::print() {
+void Fraction::print() const {
   std::cout << numerator << "/" << denominator << "\n";
 }
 
@@ -59,3 +69,14 @@ void Fraction::reduce() {
   } while(ggT != 1);
   return;
 }
+/*
+const Fraction Fraction::operator-() const {
+  return new Fraction(-numerator,denominator);
+}
+const Fraction operator+(const Fraction& x, const Fraction& y) {
+
+}
+const Fraction operator-(const Fraction& x, const Fraction& y);
+const Fraction operator*(const Fraction& x, const Fraction& y);
+const Fraction operator/(const Fraction& x, const Fraction& y);
+*/

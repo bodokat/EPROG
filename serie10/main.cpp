@@ -28,19 +28,17 @@ int main() {
   Vector v(m.getDimension());
   v.set(0,-1);
   v.set(1,0);
-  v.set(2,1.5);
+  v.set(2,2);
   for (size_t i = 0; i < 3; i++) {
     cout << "M*v[" << i << "]: " << (m*v).get(i) << endl;
-
   }
 
   Matrix ran('F',2,-5,5);
   ran.printMatrix();
-  Vector x(2,3);
 
-  Vector r = gausspivot(ran,x);
+  Vector r = gausspivot(m,v);
   cout << "Result: " << endl;
-  for (int i = 0; i < 2; i++) {
+  for (int i = 0; i < 3; i++) {
     cout << r.get(i) << endl;
   }
   return 0;
