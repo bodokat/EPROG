@@ -8,7 +8,7 @@ int main() {
   f.print();
 
   std::cout << (double)f << '\n';
-  Fraction g = 3.45;
+  Fraction g = 2.145;
   g.print();
 
   return 0;

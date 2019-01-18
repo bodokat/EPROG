@@ -26,9 +26,15 @@ Fraction& Fraction::operator=(const Fraction& orig) {
 Fraction::~Fraction() {}
 
 Fraction::Fraction(double x) {
-  int tolerance = 1000000000;
-  numerator = (int)(x*tolerance);
-  denominator = tolerance;
+  int precision;
+  if (x <= 2) {
+    precision = 1000000000;
+  } else {
+    precision = 1000000;
+  }
+  std::cout << x*precision << '\n';
+  numerator = (int)(x*precision);
+  denominator = precision;
   reduce();
 }
 Fraction::operator double() const {

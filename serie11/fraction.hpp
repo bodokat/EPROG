@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cassert>
+#include <cmath>
 
 
 class Fraction {
@@ -15,6 +16,7 @@ class Fraction {
 
     Fraction(double x);
     operator double() const;
+    operator int() const;
 
     int getNumerator() const;
     int getDenominator() const;
@@ -23,10 +25,10 @@ class Fraction {
     void print() const;
     void reduce();
 
-    //const Fraction operator-() const;
+    const Fraction operator-() const;
 };
-//
-// const Fraction operator+(const Fraction& x, const Fraction& y);
-// const Fraction operator-(const Fraction& x, const Fraction& y);
-// const Fraction operator*(const Fraction& x, const Fraction& y);
-// const Fraction operator/(const Fraction& x, const Fraction& y);
+
+const Fraction operator+(const Fraction& x, const Fraction& y);
+const Fraction operator-(const Fraction& x, const Fraction& y);
+const Fraction operator*(const Fraction& x, const Fraction& y);
+const Fraction operator/(const Fraction& x, const Fraction& y);
