@@ -40,6 +40,17 @@ Fraction::Fraction(double x) {
 Fraction::operator double() const {
   return (double) numerator / (double) denominator;
 }
+Fraction::operator int() const {
+  double x = numerator / denominator
+  int nachkomma = (int)(x*10) - ((int)x)*10;
+  if (nachkomma > 5) {
+    return numerator/denominator + 1;
+  } else if (nachkomma < 5) {
+    return numerator/denominator;
+  } else {
+
+  }
+}
 
 int Fraction::getNumerator() const { return numerator; };
 int Fraction::getDenominator() const { return denominator; };
@@ -75,7 +86,7 @@ void Fraction::reduce() {
   } while(ggT != 1);
   return;
 }
-/*
+
 const Fraction Fraction::operator-() const {
   return new Fraction(-numerator,denominator);
 }
@@ -85,4 +96,3 @@ const Fraction operator+(const Fraction& x, const Fraction& y) {
 const Fraction operator-(const Fraction& x, const Fraction& y);
 const Fraction operator*(const Fraction& x, const Fraction& y);
 const Fraction operator/(const Fraction& x, const Fraction& y);
-*/
