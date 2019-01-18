@@ -32,7 +32,6 @@ Fraction::Fraction(double x) {
   } else {
     precision = 1000000;
   }
-  std::cout << x*precision << '\n';
   numerator = (int)(x*precision);
   denominator = precision;
   reduce();

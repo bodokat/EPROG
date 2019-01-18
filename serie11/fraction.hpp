@@ -1,3 +1,6 @@
+#ifndef _FRACTION_
+#define _FRACTION_
+
 #include <iostream>
 #include <cassert>
 #include <cmath>
@@ -34,3 +37,5 @@ const Fraction operator*(const Fraction& x, const Fraction& y);
 const Fraction operator/(const Fraction& x, const Fraction& y);
 
 std::ostream& operator<<(std::ostream& output, const Fraction& x);
+
+#endif /* end of include guard: _FRACTION_ */
