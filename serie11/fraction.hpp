@@ -18,4 +18,5 @@ class Fraction {
     void setNumerator(int n);
     void setDenominator(int n);
     void print();
+    void reduce();
 };

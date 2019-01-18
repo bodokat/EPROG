@@ -1,10 +1,10 @@
 #include "fraction.hpp"
 
-Fraction() {
+Fraction::Fraction() {
   numerator = 0;
   denominator = 1;
 }
-Fraction(int p, int q) {
+Fraction::Fraction(int p, int q) {
   assert(q != 0);
   if (q > 0) {
     numerator = p;
@@ -14,16 +14,16 @@ Fraction(int p, int q) {
     denominator = -q;
   }
 }
-Fraction(const Fraction& orig) {
+Fraction::Fraction(const Fraction& orig) {
   numerator = orig.numerator;
   denominator = orig.denominator;
 }
-Fraction& operator=(const Fraction& orig) {
+Fraction& Fraction::operator=(const Fraction& orig) {
   numerator = orig.numerator;
-  denominator = orig.denominator;}
-~Fraction() {
-
+  denominator = orig.denominator;
+  return *this;
 }
+Fraction::~Fraction() {}
 
 int Fraction::getNumerator() { return numerator; };
 int Fraction::getDenominator() { return denominator; };
@@ -39,5 +39,23 @@ void Fraction::setDenominator(int n) {
   }
 }
 void Fraction::print() {
-  cout << numerator << "/" << denominator << "\n";
+  std::cout << numerator << "/" << denominator << "\n";
+}
+
+int euclid(int a,int b) {
+  while (b != 0) {
+    int h = a % b;
+    a = b;
+    b = h;
+  }
+  return a;
+}
+void Fraction::reduce() {
+  int ggT;
+  do {
+    ggT = euclid(numerator,denominator);
+    numerator /= ggT;
+    denominator /= ggT;
+  } while(ggT != 1);
+  return;
 }
