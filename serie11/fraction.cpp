@@ -41,15 +41,7 @@ Fraction::operator double() const {
   return (double) numerator / (double) denominator;
 }
 Fraction::operator int() const {
-  double x = numerator / denominator
-  int nachkomma = (int)(x*10) - ((int)x)*10;
-  if (nachkomma > 5) {
-    return numerator/denominator + 1;
-  } else if (nachkomma < 5) {
-    return numerator/denominator;
-  } else {
-
-  }
+  return (int)round(numerator / denominator);
 }
 
 int Fraction::getNumerator() const { return numerator; };
@@ -88,11 +80,42 @@ void Fraction::reduce() {
 }
 
 const Fraction Fraction::operator-() const {
-  return new Fraction(-numerator,denominator);
+  return Fraction(-numerator,denominator);
 }
 const Fraction operator+(const Fraction& x, const Fraction& y) {
-
+  int num = x.getNumerator()*y.getDenominator() + y.getNumerator()*x.getDenominator();
+  int det = x.getDenominator()*y.getDenominator();
+  Fraction result(num, det);
+  result.reduce();
+  return result;
 }
-const Fraction operator-(const Fraction& x, const Fraction& y);
-const Fraction operator*(const Fraction& x, const Fraction& y);
-const Fraction operator/(const Fraction& x, const Fraction& y);
+const Fraction operator-(const Fraction& x, const Fraction& y) {
+  int num = x.getNumerator()*y.getDenominator() - y.getNumerator()*x.getDenominator();
+  int det = x.getDenominator()*y.getDenominator();
+  Fraction result(num, det);
+  result.reduce();
+  return result;
+}
+const Fraction operator*(const Fraction& x, const Fraction& y) {
+  int num = x.getNumerator()*y.getNumerator();
+  int det = x.getDenominator()*y.getDenominator();
+  Fraction result(num, det);
+  result.reduce();
+  return result;
+}
+const Fraction operator/(const Fraction& x, const Fraction& y) {
+  assert(y.getNumerator() != 0);
+  int num = x.getNumerator()*y.getDenominator();
+  int det = x.getDenominator()*y.getNumerator();
+  Fraction result(num, det);
+  result.reduce();
+  return result;
+}
+
+std::ostream& operator<<(std::ostream& output, const Fraction& x) {
+  if (x.getNumerator() == 0) {
+    return output << 0;
+  } else {
+    return output << x.getNumerator() << "/" << x.getDenominator();
+  }
+}

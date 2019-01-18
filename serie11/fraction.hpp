@@ -32,3 +32,5 @@ const Fraction operator+(const Fraction& x, const Fraction& y);
 const Fraction operator-(const Fraction& x, const Fraction& y);
 const Fraction operator*(const Fraction& x, const Fraction& y);
 const Fraction operator/(const Fraction& x, const Fraction& y);
+
+std::ostream& operator<<(std::ostream& output, const Fraction& x);
