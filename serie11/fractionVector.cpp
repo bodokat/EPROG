@@ -29,7 +29,7 @@ FractionVector::~FractionVector (){
   }
 }
 
-FractionVector::operator=(const FractionVector& orig) {
+FractionVector& FractionVector::operator=(const FractionVector& orig) {
   len = orig.len;
   if (len > 0) {
     coeff = new Fraction[len];
@@ -39,6 +39,43 @@ FractionVector::operator=(const FractionVector& orig) {
   }
 }
 
-void FractionVector::setCoefficient(int j, Fraction x) { coeff[j] = x; }
-Fraction FractionVector::getCoefficient(int j) { return coeff[j]; }
+void FractionVector::setCoefficient(int j, Fraction x) {
+  assert(j < len);
+  coeff[j] = x;
+}
+Fraction FractionVector::getCoefficient(int j) {
+  assert(j < len);
+  return coeff[j];
+}
 int FractionVector::getLength() { return len; }
+
+// Sort method
+void Quicksort(Fraction* arr, int min, int max) {
+  if (min >= max) { return; }
+
+  int left = min + 1;
+  int right = max;
+  int mid = min + (max - min)/2;
+  double pivot = (double) arr[mid];
+
+  // Fraction temp;
+
+  std::swap(arr[min],arr[mid]);
+  do {
+    while (left <= right && (double) arr[left] <= pivot) { left++; }
+    while (left <= right && (double) arr[right] > pivot) { right--; }
+
+
+    if (left < right) {
+      std::swap(arr[left],arr[right]);
+    }
+  } while(left <= right);
+  std::swap(arr[min],arr[right]);
+
+  Quicksort(arr, min, right);
+  Quicksort(arr, right + 1, max);
+}
+void FractionVector::sort() {
+  //Quicksort
+  Quicksort(coeff, 0, len - 1);
+}

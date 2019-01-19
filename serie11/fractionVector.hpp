@@ -2,6 +2,8 @@
 #define _FRACTIONVECTOR_
 
 #include "fraction.hpp"
+#include <stdlib.h>
+#include <cassert>
 
 class FractionVector {
 private:
@@ -14,11 +16,13 @@ public:
   FractionVector (const FractionVector& orig);
   ~FractionVector ();
 
-  operator=(const FractionVector& orig);
+  FractionVector& operator=(const FractionVector& orig);
 
   void setCoefficient(int j, Fraction x);
   Fraction getCoefficient(int j);
   int getLength();
+
+  void sort();
 };
 
 #endif /* end of include guard: _FRACTIONVECTOR_ */
