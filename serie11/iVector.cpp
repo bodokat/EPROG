@@ -45,12 +45,12 @@ iVector& iVector::operator=(const iVector& orig) {
   return *this;
 }
 
-int getCoefficient(int i) {
+int iVector::getCoefficient(int i) {
   assert(i < len);
   return coeff[i];
 }
-void setCoefficient(int i, int x) {
+void iVector::setCoefficient(int i, int x) {
   assert(i < len);
   coeff[i] = x;
 }
-int getLength() { return len; }
+int iVector::getLength() { return len; }

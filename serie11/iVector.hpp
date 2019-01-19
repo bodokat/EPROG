@@ -1,6 +1,8 @@
 #ifndef _IVECTOR_
 #define _IVECTOR_
 
+#include <cassert>
+
 class iVector {
 private:
   int len;
