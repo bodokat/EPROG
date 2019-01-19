@@ -1,5 +1,5 @@
 run: fractionVectorTest.exe
-	./fractionVectorTest
+
 
 fraction.o: fraction.cpp fraction.hpp
 	g++ -c fraction.cpp -o fraction.o
@@ -11,4 +11,4 @@ fractionVector.o: fractionVector.cpp fractionVector.hpp fraction.o
 	g++ -c fractionVector.cpp fraction.o -o fractionVector.o
 
 fractionVectorTest.exe: fractionVectorTest.cpp fractionVector.o
-	g++ fractionVectorTest.cpp fractionVector.o -o fractionVectorTest.exe
+	g++ fractionVectorTest.cpp fractionVector.cpp fraction.cpp -o fractionVectorTest.exe
