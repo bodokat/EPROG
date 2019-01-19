@@ -37,6 +37,7 @@ FractionVector& FractionVector::operator=(const FractionVector& orig) {
       coeff[i] = orig.coeff[i];
     }
   }
+  return *this;
 }
 
 void FractionVector::setCoefficient(int j, Fraction x) {
