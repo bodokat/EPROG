@@ -21,6 +21,8 @@ FractionVector::FractionVector (const FractionVector& orig) {
     for (int i = 0; i < len; i++) {
       coeff[i] = orig.coeff[i];
     }
+  } else {
+    coeff = (Fraction*) 0;
   }
 }
 FractionVector::~FractionVector (){
@@ -30,13 +32,19 @@ FractionVector::~FractionVector (){
 }
 
 FractionVector& FractionVector::operator=(const FractionVector& orig) {
-  len = orig.len;
-  if (len > 0) {
-    coeff = new Fraction[len];
-    for (int i = 0; i < len; i++) {
+  if (orig.len > 0) {
+    if (len != orig.len) {
+      delete[] coeff;
+      coeff = new Fraction[orig.len];
+    }
+    for (int i = 0; i < orig.len; i++) {
       coeff[i] = orig.coeff[i];
     }
+  } else {
+    delete[] coeff;
+    coeff = (Fraction*) 0;
   }
+  len = orig.len;
   return *this;
 }
 
@@ -73,7 +81,7 @@ void Quicksort(Fraction* arr, int min, int max) {
   } while(left <= right);
   std::swap(arr[min],arr[right]);
 
-  Quicksort(arr, min, right);
+  Quicksort(arr, min, right - 1);
   Quicksort(arr, right + 1, max);
 }
 void FractionVector::sort() {

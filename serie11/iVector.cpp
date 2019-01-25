@@ -33,15 +33,18 @@ iVector::~iVector () {
   }
 }
 iVector& iVector::operator=(const iVector& orig) {
-  len = orig.len;
-  if (len > 0) {
-    coeff = new int[len];
-    for (int i = 0; i < len; i++) {
+  if (orig.len > 0) {
+    if (len != orig.len) {
+      delete[] coeff;
+      coeff = new int[orig.len];
+    }
+    for (int i = 0; i < orig.len; i++) {
       coeff[i] = orig.coeff[i];
     }
   } else {
     coeff = (int*) 0;
   }
+  len = orig.len;
   return *this;
 }
 
