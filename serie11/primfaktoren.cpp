@@ -61,6 +61,7 @@ iVector eratosthenes(int n) {
 
 int main() {
   int x;
+  std::cout << "Zahl eingeben: " << '\n';
   std::cin >> x;
   std::cout << "Primfaktoren von " << x << ":" << '\n';
   iVector fakt = primfaktoren(x);
