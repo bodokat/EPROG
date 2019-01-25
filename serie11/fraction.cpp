@@ -1,4 +1,5 @@
 #include "fraction.hpp"
+#include <iostream>
 
 Fraction::Fraction() {
   numerator = 0;
@@ -27,7 +28,7 @@ Fraction::~Fraction() {}
 
 Fraction::Fraction(double x) {
   int precision;
-  if (x <= 2) {
+  if (fabs(x) <= 2) {
     precision = 1000000000;
   } else {
     precision = 1000000;
@@ -39,8 +40,21 @@ Fraction::Fraction(double x) {
 Fraction::operator double() const {
   return (double) numerator / (double) denominator;
 }
+
+
 Fraction::operator int() const {
-  return (int)round(numerator / denominator);
+  // return (int)round((double) numerator / (double) denominator);
+  int res = numerator / denominator;
+  int frac = numerator % denominator; // nachkommaanteil, frac/denominator < 1
+  if (fabs(2*frac) <= denominator) { //nachkommaanteil <= 0.5
+    return res;
+  } else {
+    if (numerator > 0) {
+      return res + 1;
+    } else {
+      return res - 1;
+    }
+  }
 }
 
 int Fraction::getNumerator() const { return numerator; };
@@ -71,7 +85,7 @@ int euclid(int a,int b) {
 void Fraction::reduce() {
   int ggT;
   do {
-    ggT = euclid(numerator,denominator);
+    ggT = fabs(euclid(numerator,denominator));
     numerator /= ggT;
     denominator /= ggT;
   } while(ggT != 1);
